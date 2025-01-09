@@ -13,9 +13,12 @@ import { Input } from '@/components/ui/input'
 import { FaGithub } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
 
-import {loginSchema} from "../schemas"
+import { loginSchema } from "../schemas"
+import { useLogin } from '../api/use-login'
 
 const SignInCard = () => {
+    const { mutate } = useLogin();
+
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -25,7 +28,7 @@ const SignInCard = () => {
     })
 
     const onSubmit = (values: z.infer<typeof loginSchema>) => {
-        console.log({ values });
+        mutate({ json: values });
     }
 
     return (
