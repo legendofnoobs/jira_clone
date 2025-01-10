@@ -56,7 +56,6 @@ const app = new Hono()
         })
         .post("/logout",(c)=>{
             deleteCookie(c, AUTH_COOKIE)
-            console.log("logged out")
             return c.json({ success: true })
         })
 
