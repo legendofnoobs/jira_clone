@@ -6,7 +6,7 @@ import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from "@/conf
 import { ID, Query } from "node-appwrite";
 import { MemberRole } from "@/features/members/types";
 import { generateInviteCode } from "@/lib/utils";
-import { getMembers } from "@/features/members/utils";
+import { getMember } from "@/features/members/utils";
 
 const app = new Hono()
     .get("/", sessionMiddleware, async (c) => {
@@ -103,7 +103,7 @@ const app = new Hono()
             const { workspaceId } = c.req.param();
             const { name, image } = c.req.valid("form");
 
-            const member = await getMembers({
+            const member = await getMember({
                 databases,
                 workspaceId,
                 userId: user?.$id,
