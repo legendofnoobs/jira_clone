@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { headers } from "next/headers";
-import { getCurrent } from "@/features/auth/actions";
+import { getCurrent } from "@/features/auth/queries";
 
 interface WorkspaceProps {
     params: {

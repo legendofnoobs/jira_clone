@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { getCurrent } from "@/features/auth/actions";
-import { CreateWorkspaceForm } from "@/features/workspaces/components/create-workspace-form"; 
+import { getCurrent } from "@/features/auth/queries";
+import { CreateWorkspaceForm } from "@/features/workspaces/components/create-workspace-form";
 import { headers } from "next/headers";
 
 async function CreateWorkspace() {
