@@ -10,7 +10,7 @@ import { createSessionClient } from "@/lib/appwrite"
 
 export const getWorkspaces = async () => {
     try {
-        const {databases, account} = await createSessionClient();
+        const { databases, account } = await createSessionClient();
         const user = await account.get();
 
         const members = await databases.listDocuments(
@@ -39,11 +39,11 @@ export const getWorkspaces = async () => {
     }
 }
 
-interface GetWorkspaceProps{
+interface GetWorkspaceProps {
     workspaceId: string
 }
 
-export const getWorkspace = async ({workspaceId}: GetWorkspaceProps) => {
+export const getWorkspace = async ({ workspaceId }: GetWorkspaceProps) => {
     try {
         const client = new Client()
             .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
@@ -77,3 +77,22 @@ export const getWorkspace = async ({workspaceId}: GetWorkspaceProps) => {
     }
 
 }
+
+export const getWorkspaceInfo = async ({
+    workspaceId,
+}: GetWorkspaceProps): Promise<{ name: string } | null> => {
+    try {
+        const { databases } = await createSessionClient();
+
+        const workspace = await databases.getDocument<Workspace>(
+            DATABASE_ID,
+            WORKSPACES_ID,
+            workspaceId
+        );
+
+        return { name: workspace.name };
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
