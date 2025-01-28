@@ -274,7 +274,7 @@ function EditProjectForm({
                             variant={"destructive"}
                             type="button"
                             disabled={
-                                isPending
+                                isPending || isDeletingProject
                             }
                             onClick={handleDelete}
                         >
