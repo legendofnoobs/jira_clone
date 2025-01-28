@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Separator } from "./ui/separator";
 import { Navigation } from "./navigation";
 import { WorkspaceSwitcher } from "./workspace-switcher";
+import Projects from "./projects";
 
 
 
@@ -17,6 +18,8 @@ function Sidebar() {
             <WorkspaceSwitcher />
             <Separator className="my-4" />
             <Navigation />
+            <Separator className="my-4" />
+            <Projects />
         </aside>
     );
 }
