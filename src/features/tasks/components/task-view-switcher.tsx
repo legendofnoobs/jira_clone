@@ -13,6 +13,8 @@ import { useCreateTaskModal } from "../hooks/use-create-task-modal"
 import { useGetTasks } from "../api/use-get-tasks"
 import { DataFilters } from "./data-filters"
 import { useTaskFilters } from "../hooks/use-task-filters"
+import { DataTable } from "./data-table"
+import { columns } from "./columns"
 
 // import { DataFilters } from "./data-filters"
 // import { useTaksFilters } from "../hooks/use-taks-filters"
@@ -120,11 +122,10 @@ export const TaskViewSwitcher = ({
                 ) : (
                     <>
                         <TabsContent value="table" className="mt-0">
-                            {/* <DataTable
+                            <DataTable
                                 columns={columns}
                                 data={tasks?.documents ?? []}
-                            /> */}
-                            {JSON.stringify(tasks)}
+                            />
                         </TabsContent>
                         <TabsContent value="kanban" className="mt-0">
                             {/* <DataKanban
