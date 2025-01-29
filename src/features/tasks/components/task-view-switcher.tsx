@@ -11,6 +11,7 @@ import {
 // import { useGetTasks } from '../api/use-get-tasks';
 // import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id" 
 import { useQueryState } from "nuqs"
+import { useCreateTaskModal } from "../hooks/use-create-task-modal"
 // import { DataFilters } from "./data-filters"
 // import { useTaksFilters } from "../hooks/use-taks-filters"
 // import { DataTable } from "./data-table"
@@ -30,6 +31,8 @@ interface TasksViewSwitcherProps {
 export const TaskViewSwitcher = ({ 
     // hideProjectFilter 
 }: TasksViewSwitcherProps) => {
+        const { open  } = useCreateTaskModal();
+    
 
 
     // const [{
@@ -39,13 +42,12 @@ export const TaskViewSwitcher = ({
     //     dueDate,
     // }] = useTaksFilters(); 
 
-    const [view, setView] = useQueryState("tasksView", { // Establece en la url el valor de view, la cual viene del valor seleccionado en Tabs
+    const [view, setView] = useQueryState("tasksView", {
         defaultValue: "table",
     })
 
     // const workspaceId = useWorkspaceId()
     // const paramProjectId = useProjectId()
-    // const { open } = useCreateTaskModal(); // open establece isOpen a true
 
     // const { mutate: bulkUpdate } = useBulkUpdateTasks();
 
@@ -100,10 +102,10 @@ export const TaskViewSwitcher = ({
                     <Button
                         size="sm"
                         className="w-full lg:w-auto"
-                        // onClick={open} // Al clickear isOpen se establece a true -> y <CreateTaskModal /> que está en el layout abre <ResponsiveModal /> 
+                        onClick={open}
                     >
                         <PlusIcon className="size-4 mr-2" />
-                        New Task
+                        New
                     </Button>
                 </div>
                 <Separator className="my-4" />
