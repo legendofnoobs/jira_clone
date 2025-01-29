@@ -196,138 +196,135 @@ const app = new Hono()
             })
         }
     )
-    // .delete(
-    //     "/:taskId",                                                                                                      // Ruta de la petición con el parámetro taskId
-    //     sessionMiddleware,                                                                                               // Verificamos si el usuario está autenticado
-    //     async (c) => {                                                                                             // Establecido el contexto obtenemos lo siguiente:
+    .delete(
+        "/:taskId",
+        sessionMiddleware,
+        async (c) => {
+            const user = c.get("user");
+            const databases = c.get("databases");
+            const { taskId } = c.req.param(); 
 
-    //         const user = c.get("user");                                                                                    // Obtenemos el usuario autenticado
-    //         const databases = c.get("databases");                                                                          // Base de datos de appWrite
-    //         const { taskId } = c.req.param();                                                                              // Parámetros de la consulta 
+            const task = await databases.getDocument<Task>(
+                DATABASE_ID,
+                TASKS_ID,
+                taskId
+            )
 
-    //         const task = await databases.getDocument<Task>(
-    //             DATABASE_ID,
-    //             TASKS_ID,
-    //             taskId
-    //         )
+            const member = await getMember({
+                databases,
+                workspaceId: task.workspaceId,
+                userId: user.$id,
+            });
 
-    //         const member = await getMember({                                                                               // Obtenemos el usuario asociado al workspace
-    //             databases,
-    //             workspaceId: task.workspaceId,
-    //             userId: user.$id,
-    //         });
+            if (!member) {
+                return c.json({ error: "Unauthorized" }, 401);
+            }
 
-    //         if (!member) {
-    //             return c.json({ error: "Unauthorized" }, 401);                                                               // Validamos que el usuario pertenezca al workspace
-    //         }
+            await databases.deleteDocument(
+                DATABASE_ID,
+                TASKS_ID,
+                taskId
+            )
 
-    //         await databases.deleteDocument(                                                                                // Se elimina la tarea
-    //             DATABASE_ID,
-    //             TASKS_ID,
-    //             taskId
-    //         )
+            return c.json({ data: { $id: task.$id } });
+        }
+    )
+    .patch(
+        "/:taskId",
+        sessionMiddleware,
+        zValidator("json", createTaskSchema.partial()),
+        async (c) => {
+            const user = c.get("user");
+            const databases = c.get("databases");
+            const { name, status, projectId, dueDate, assigneeId, description } = c.req.valid("json")
+            const { taskId } = c.req.param();
+            const existingTask = await databases.getDocument<Task>(
+                DATABASE_ID,
+                TASKS_ID,
+                taskId,
+            )
 
-    //         return c.json({ data: { $id: task.$id } });                                                                               // Se retorna el id de la tarea eliminada
-    //     }
-    // )
-    // .patch(
-    //     "/:taskId",
-    //     sessionMiddleware,                                                                                               // Verificar si el usuario está autenticado
-    //     zValidator("json", createTaskSchema.partial()),                                                                  // Validar el body de la petición según el esquema
-    //     async (c) => {                                                                                             // Establecido el contexto obtenemos lo siguiente:
+            const member = await getMember({
+                databases,
+                workspaceId: existingTask.workspaceId,
+                userId: user.$id,
+            });
 
-    //         const user = c.get("user");
-    //         const databases = c.get("databases");
-    //         const { name, status, projectId, dueDate, assigneeId, description } = c.req.valid("json")
-    //         const { taskId } = c.req.param();                                                                              // Parámetros de la consulta
+            if (!member) {
+                return c.json({ error: "Unauthorized" }, 401);
+            }
 
-    //         const existingTask = await databases.getDocument<Task>(                                                        // Obtenemos la tarea existente
-    //             DATABASE_ID,
-    //             TASKS_ID,
-    //             taskId,
-    //         )
+            const task = await databases.updateDocument<Task>(
+                DATABASE_ID,
+                TASKS_ID,
+                taskId,
+                {
+                    name,
+                    status,
+                    projectId,
+                    dueDate,
+                    assigneeId,
+                    description,
+                }
+            )
 
-    //         const member = await getMember({                                                                               // Obtenemos el usuario asociado a la tarea existente en el workspace
-    //             databases,
-    //             workspaceId: existingTask.workspaceId,
-    //             userId: user.$id,
-    //         });
+            return c.json({ data: task });
+        }
+    )
+    .get(
+        "/:taskId",
+        sessionMiddleware,
+        async (c) => {
+            const currentUser = c.get("user");
+            const databases = c.get("databases");
+            const { users } = await createAdminClient();
+            const { taskId } = c.req.param();
 
-    //         if (!member) {
-    //             return c.json({ error: "Unauthorized" }, 401);                                                               // Validamos que el usuario pertenezca al workspace
-    //         }
+            const task = await databases.getDocument<Task>(
+                DATABASE_ID,
+                TASKS_ID,
+                taskId
+            );
 
-    //         const task = await databases.updateDocument<Task>(                                                             // Se actualiza la tarea existente
-    //             DATABASE_ID,
-    //             TASKS_ID,
-    //             taskId,
-    //             {
-    //                 name,
-    //                 status,
-    //                 projectId,
-    //                 dueDate,
-    //                 assigneeId,
-    //                 description,
-    //             }
-    //         )
+            const currentMember = await getMember({
+                databases,
+                workspaceId: task.workspaceId,
+                userId: currentUser.$id,
+            });
 
-    //         return c.json({ data: task });
-    //     }
-    // )
-    // .get(
-    //     "/:taskId",                                                                                                      // Ruta de la petición con el parámetro taskId
-    //     sessionMiddleware,                                                                                               // Verificamos si el usuario está autenticado
-    //     async (c) => {                                                                                             // Establecido el contexto obtenemos lo siguiente:
-    //         const currentUser = c.get("user");                                                                             // Obtenemos el usuario autenticado
-    //         const databases = c.get("databases");                                                                          // Base de datos de appWrite
-    //         const { taskId } = c.req.param();                                                                              // Parámetros de la consulta taskId
-    //         const { users } = await createAdminClient();                                                                   // Users registrados en appWrite
+            if (!currentMember) {
+                return c.json({ error: "Unauthorized" }, 401);
+            }
 
-    //         const task = await databases.getDocument<Task>(                                                                // Obtenemos la tarea que corresponde al id del parámetro
-    //             DATABASE_ID,
-    //             TASKS_ID,
-    //             taskId
-    //         );
+            const project = await databases.getDocument<Project>(
+                DATABASE_ID,
+                PROJECTS_ID,
+                task.projectId
+            );
 
-    //         const currentMember = await getMember({                                                                        // Obtenemos el usuario asociado a la tarea existente en el workspace
-    //             databases,
-    //             workspaceId: task.workspaceId,
-    //             userId: currentUser.$id,
-    //         });
+            const member = await databases.getDocument(
+                DATABASE_ID,
+                MEMBERS_ID,
+                task.assigneeId,
+            );
 
-    //         if (!currentMember) {
-    //             return c.json({ error: "Unauthorized" }, 401);                                                               // Validamos que el usuario pertenezca al workspace y a la tarea
-    //         }
+            const user = await users.get(member.userId)
 
-    //         const project = await databases.getDocument<Project>(                                                          // Obtenemos el proyecto asociado a la tarea del parámetro
-    //             DATABASE_ID,
-    //             PROJECTS_ID,
-    //             task.projectId
-    //         );
+            const assignee = {
+                ...member,
+                name: user.name,
+                email: user.email
+            }
 
-    //         const member = await databases.getDocument(                                                                    // Obtenemos el miembro asignado a la tarea 
-    //             DATABASE_ID,
-    //             MEMBERS_ID,
-    //             task.assigneeId,
-    //         );
-
-    //         const user = await users.get(member.userId)                                                                    // Obtenemos el usuario asociado al miembro asignado a la tarea
-
-    //         const assignee = {                                                                                             // Obtenemos el assignne en base al miembro asignado a la tarea con los detalles de su usuario
-    //             ...member,
-    //             name: user.name || user.email,
-    //             email: user.email
-    //         }
-
-    //         return c.json({                                                                                                // Se retorna el task con los detalles de su proyecto y su miembro asignado.
-    //             data: {
-    //                 ...task,
-    //                 project,
-    //                 assignee
-    //             }
-    //         })
-    //     }
-    // )
+            return c.json({
+                data: {
+                    ...task,
+                    project,
+                    assignee
+                }
+            })
+        }
+    )
     // .post(
     //     "/bulk-update",                                                                                                 // Esta ruta se utiliza para actualizar mas de un task a la vez. 
     //     sessionMiddleware,                                                                                              // Verificamos si el usuario está autenticado

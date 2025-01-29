@@ -5,11 +5,11 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { ExternalLinkIcon, PencilIcon, TrashIcon } from "lucide-react";
-// import { useDeleteTask } from "../api/use-delete-task";
+import { useDeleteTask } from "../api/use-delete-task";
 import useConfirm from "@/hooks/use-confirm";
 import { useRouter } from "next/navigation";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
-// import { useEditTaskModal } from "../hooks/use-edit-taks-modal";
+import { useEditTaskModal } from "../hooks/use-edit-task-modal";
 
 
 interface TaskActionsProps {
@@ -23,7 +23,7 @@ export const TaskActions = ({ id, projectId, children }: TaskActionsProps) => {
     const router = useRouter();
     const workspaceId = useWorkspaceId();
 
-    // const { open } = useEditTaskModal();
+    const { open } = useEditTaskModal();
 
     const [ConfirmDialog, confirm] = useConfirm(
         "Delete Task",
@@ -31,12 +31,12 @@ export const TaskActions = ({ id, projectId, children }: TaskActionsProps) => {
         "destructive"
     )
 
-    // const { mutate, isPending } = useDeleteTask();
+    const { mutate, isPending } = useDeleteTask();
 
     const onDelete = async () => {
         const ok = await confirm();
         if (ok) {
-            // mutate({ param: { taskId: id } });
+            mutate({ param: { taskId: id } });
         }
     };
 
@@ -79,7 +79,7 @@ export const TaskActions = ({ id, projectId, children }: TaskActionsProps) => {
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={onDelete}
-                        // disabled={isPending}
+                        disabled={isPending}
                         className="text-red-700 focus:text-red-700 font-medium p-[10px]"
                     >
                         <TrashIcon className="size-4 mr-2 stroke-2" />
