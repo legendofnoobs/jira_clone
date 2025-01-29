@@ -3,15 +3,17 @@
 import { Separator } from "@/components/ui/separator" 
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-// import { TabsContent } from "@radix-ui/react-tabs"
+import { TabsContent } from "@radix-ui/react-tabs"
 import { 
-    // Loader, 
+    Loader, 
     PlusIcon } from "lucide-react"
-// import { useCreateTaskModal } from "../hooks/use-create-taks-modal"
-// import { useGetTasks } from '../api/use-get-tasks';
-// import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id" 
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id" 
 import { useQueryState } from "nuqs"
 import { useCreateTaskModal } from "../hooks/use-create-task-modal"
+import { useGetTasks } from "../api/use-get-tasks"
+import { DataFilters } from "./data-filters"
+import { useTaskFilters } from "../hooks/use-task-filters"
+
 // import { DataFilters } from "./data-filters"
 // import { useTaksFilters } from "../hooks/use-taks-filters"
 // import { DataTable } from "./data-table"
@@ -32,35 +34,33 @@ export const TaskViewSwitcher = ({
     // hideProjectFilter 
 }: TasksViewSwitcherProps) => {
         const { open  } = useCreateTaskModal();
-    
 
-
-    // const [{
-    //     status,
-    //     assigneeId,
-    //     projectId,
-    //     dueDate,
-    // }] = useTaksFilters(); 
+    const [{
+        status,
+        assigneeId,
+        projectId,
+        dueDate,
+    }] = useTaskFilters(); 
 
     const [view, setView] = useQueryState("tasksView", {
         defaultValue: "table",
     })
 
-    // const workspaceId = useWorkspaceId()
+    const workspaceId = useWorkspaceId()
     // const paramProjectId = useProjectId()
 
     // const { mutate: bulkUpdate } = useBulkUpdateTasks();
 
-    // const {
-    //     data: tasks,
-    //     isLoading: isLoadingTasks
-    // } = useGetTasks({                  // Se obtienen las tareas según status
-    //     workspaceId,
-    //     projectId: paramProjectId || projectId,
-    //     assigneeId,
-    //     status,
-    //     dueDate,
-    // });
+    const {
+        data: tasks,
+        isLoading: isLoadingTasks
+    } = useGetTasks({
+        workspaceId,
+        projectId,
+        assigneeId,
+        status,
+        dueDate,
+    });
 
     // const onKambanChange = useCallback((
     //     tasks: { $id: string; status: TaskStatus; position: number }[]
@@ -109,34 +109,36 @@ export const TaskViewSwitcher = ({
                     </Button>
                 </div>
                 <Separator className="my-4" />
-                {/* DataFilter establece con nuqs el estado de status y lo refleja en la url */}
-                {/* <DataFilters
-                    hideProjectFilter={hideProjectFilter}
-                /> */}
+                <DataFilters
+                    // hideProjectFilter={hideProjectFilter}
+                />
                 <Separator className="my-4" />
-                {/* {isLoadingTasks ? (
+                {isLoadingTasks ? (
                     <div className="w-full border rounded-lg h-[200px] flex flex-col items-center justify-center">
                         <Loader className="size-5 animate-spin text-muted-foreground" />
                     </div>
                 ) : (
                     <>
                         <TabsContent value="table" className="mt-0">
-                            <DataTable
+                            {/* <DataTable
                                 columns={columns}
                                 data={tasks?.documents ?? []}
-                            />
+                            /> */}
+                            {JSON.stringify(tasks)}
                         </TabsContent>
                         <TabsContent value="kanban" className="mt-0">
-                            <DataKanban
+                            {/* <DataKanban
                                 data={tasks?.documents ?? []}
                                 onChange={onKambanChange}
-                            />
+                            /> */}
+                            {JSON.stringify(tasks)}
                         </TabsContent>
                         <TabsContent value="calendar" className="mt-0 h-full pb-4">
-                            <DataCalendar data={tasks?.documents ?? []} />
+                            {/* <DataCalendar data={tasks?.documents ?? []} /> */}
+                            {JSON.stringify(tasks)}
                         </TabsContent>
                     </>
-                )} */}
+                )}
             </div>
         </Tabs>
     )
