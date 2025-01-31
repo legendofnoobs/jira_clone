@@ -7,9 +7,7 @@ import {
     type DropResult
 } from "@hello-pangea/dnd"
 import KanbanColumnHeader from "./kanban-column-header";
-// import KanbanColumnHeader from "./KanbanColumnHeader";
-// import { KanbanCard } from "./kanban-card";
-
+import { KanbanCard } from "./kanban-card";
 
 const boards: TaskStatus[] = [
     TaskStatus.BACKLOG,
@@ -183,7 +181,7 @@ export const DataKanban = ({ data, onChange }: DataKanbanProps) => {
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
                                                     >
-                                                        {/* <KanbanCard task={task} /> */}
+                                                        <KanbanCard task={task} />
                                                     </div>
                                                 )}
                                             </Draggable>
