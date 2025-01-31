@@ -71,22 +71,14 @@ function EditProjectForm({
     }
 
     const onSubmit = (values: z.infer<typeof updateProjectSchema>) => {
-        mutate(
-            {
-                param: {
-                    projectId: initialValues.$id,
-                },
-                form: {
-                    ...values,
-                    image: values.image instanceof File ? values.image : "",
-                },
-            },
-            {
-                onSuccess: () => {
-                    form.reset();
-                },
-            }
-        );
+        const finalValues = {
+            ...values,
+            image: values.image instanceof File ? values.image : "",
+        }
+        mutate({
+            form: finalValues,
+            param: { projectId: initialValues.$id }
+        })
     };
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {

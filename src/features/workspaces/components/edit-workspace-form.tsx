@@ -92,11 +92,6 @@ function EditWorkSpaceForm({
                     ...values,
                     image: values.image instanceof File ? values.image : "",
                 },
-            },
-            {
-                onSuccess: () => {
-                    form.reset();
-                },
             }
         );
     };
