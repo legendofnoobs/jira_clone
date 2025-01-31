@@ -48,7 +48,7 @@ async function Project({ params }: ProjectProps) {
                     </Button>
                 </div>
             </div>
-            <TaskViewSwitcher/>
+            <TaskViewSwitcher hideProjectFilter/>
         </div>
     );
 }

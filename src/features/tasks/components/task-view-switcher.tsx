@@ -37,7 +37,7 @@ interface TasksViewSwitcherProps {
 
 
 export const TaskViewSwitcher = ({ 
-    // hideProjectFilter 
+    hideProjectFilter 
 }: TasksViewSwitcherProps) => {
         const { open  } = useCreateTaskModal();
 
@@ -116,7 +116,7 @@ export const TaskViewSwitcher = ({
                 </div>
                 <Separator className="my-4" />
                 <DataFilters
-                    // hideProjectFilter={hideProjectFilter}
+                    hideProjectFilter={hideProjectFilter}
                 />
                 <Separator className="my-4" />
                 {isLoadingTasks ? (
