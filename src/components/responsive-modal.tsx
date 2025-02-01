@@ -18,7 +18,7 @@ function ResponsiveModal({ children, open, onOpenChange }: ResponsiveModalProps)
     if (isDesktop) {
         return (
             <Dialog open={open} onOpenChange={onOpenChange}>
-                <DialogContent className="w-full sm:max-w-lg p-0 border-none overflow-y-auto hide-scrollbar max-h-[85vh]">
+                <DialogContent className="w-full sm:max-w-lg p-0 border-none overflow-y-auto hide-scrollbar max-h-[85vh] outline-none">
                     {children}
                 </DialogContent>
             </Dialog>
@@ -28,7 +28,7 @@ function ResponsiveModal({ children, open, onOpenChange }: ResponsiveModalProps)
     return (
         <Drawer open={open} onOpenChange={onOpenChange}>
             <DrawerContent>
-                <div className="overflow-y-auto hide-scrollbar max-h-[85vh]">
+                <div className="overflow-y-auto hide-scrollbar max-h-[85vh] bg-neutral-900">
                     {children}
                 </div>
             </DrawerContent>

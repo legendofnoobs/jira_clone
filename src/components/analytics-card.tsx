@@ -21,22 +21,22 @@ export const AnalyticsCard = ({ title, value, variant, increaseValue }: Analytic
     const Icon = variant === "up" ? FaCaretUp : FaCaretDown;
 
     return (
-        <Card className="shadow-none border-none w-full">
+        <Card className="shadow-none border-none w-full bg-neutral-900">
             <CardHeader>
                 <div className="flex items-center gap-x-2.5">
                     <CardDescription className="flex items-center gap-x-2 font-medium overflow-hidden">
-                        <span className="truncate text-base">
+                        <span className="truncate text-base text-white">
                             {title}
                         </span>
                     </CardDescription>
                     <div className="flex items-center gap-x-1">
                         <Icon className={cn(iconColor, "size-4")} />
-                        <span className={cn(increaseValueColor, "truncate text-base font-medium")}>
+                        <span className={cn(increaseValueColor, "truncate text-base font-medium ")}>
                             {increaseValue}
                         </span>
                     </div>
                 </div>
-                <CardTitle className="text-3xl font-semibold">
+                <CardTitle className="text-3xl font-semibold text-white">
                     {value}
                 </CardTitle>
             </CardHeader>

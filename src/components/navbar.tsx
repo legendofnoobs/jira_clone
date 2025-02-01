@@ -2,6 +2,8 @@
 import { UserButton } from "@/features/auth/components/user-button";
 import MobileSidebar from "@/components/mobile-sidebar";
 import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
 
 const pathnameMap = {
     "tasks": {
@@ -35,7 +37,13 @@ function Navbar() {
                 </p>
             </div>
             <MobileSidebar />
-            <UserButton />
+            <div className="flex gap-4 items-center">
+                <Link href={`https://github.com/legendofnoobs/jira_clone`} target={`_blank`} className="flex gap-2 items-center">
+                    <FaGithub className="size-6"/>
+                    star repo
+                </Link>
+                <UserButton />
+            </div>
         </nav>
     );
 }

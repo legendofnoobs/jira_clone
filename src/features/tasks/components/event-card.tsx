@@ -36,7 +36,7 @@ export const EventCard = ({ id, title, project, assignee, status }: EventCardPro
     }
 
     return (
-        <div className="px-2">
+        <div className="px-2 text-black">
             <div
                 onClick={onClick}
                 className={cn(

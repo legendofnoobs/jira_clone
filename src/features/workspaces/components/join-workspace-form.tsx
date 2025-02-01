@@ -40,7 +40,7 @@ function JoinWorkspaceForm({ initialValues }: JoinWorkspaceFormProps) {
     }
 
     return (
-        <Card className="w-full h-full border-none shadow-none">
+        <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
             <CardHeader className="p-7">
                 <CardTitle className="text-xl font-bold">
                     Join workspace
@@ -64,7 +64,7 @@ function JoinWorkspaceForm({ initialValues }: JoinWorkspaceFormProps) {
                     <Button
                         type="button"
                         variant="primary"
-                        className="w-full lg:w-fit"
+                        className="w-full lg:w-fit border-none"
                         size={"lg"}
                     onClick={handleInvite}
                     disabled={isPending}

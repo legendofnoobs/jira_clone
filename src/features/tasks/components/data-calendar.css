@@ -2,7 +2,7 @@
     @apply text-sm;
     @apply font-normal;
     @apply pb-4;
-    @apply text-black;
+    @apply text-white;
     @apply border-b-0;
 }
 
@@ -13,7 +13,7 @@
 .rbc-button-link {
     @apply text-xs;
     @apply font-normal;
-    @apply text-black;
+    @apply text-white;
 }
 
 .rbc-month-row {
@@ -33,6 +33,10 @@
 
 .rbc-month-view {
     @apply border-none;
+    @apply bg-neutral-800;
+    @apply p-3;
+    @apply rounded-lg;
+    /* @apply text-white; */
 }
 
 .rbc-date-cell {
@@ -40,9 +44,9 @@
 }
 
 .rbc-today {
-    background: rgb(182, 199, 255);
+    background: rgb(0, 60, 255);
 }
 
 .rbc-off-range-bg {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(0, 0, 0);
 }

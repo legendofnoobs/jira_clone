@@ -6,7 +6,7 @@ import DottedSeparator from './dotted-separator';
 export const Analytics = ({ data }: ProjectAnalyticsResponseType) => {
 
     return (
-        <ScrollArea className="border rounded-lg w-full whitespace-nowrap shrink-0">
+        <ScrollArea className="border-neutral-500 rounded-lg w-full whitespace-nowrap shrink-0 bg-neutral-900">
             <div className='w-full flex flex-row'>
                 <div className='flex items-center flex-1'>
                     <AnalyticsCard

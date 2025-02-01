@@ -46,16 +46,15 @@ export const EditTaskForm = ({ onCancel, projectOptions, memberOptions, initialV
         });
     }
 
-
     return (
-        <Card className="w-full h-full border-none shadow-slate-200">
+        <Card className="w-full h-full border-none bg-neutral-900 text-white">
             <CardHeader className="flex p-7">
                 <CardTitle className="text-xl font-bold">
                     Edit a task
                 </CardTitle>
             </CardHeader>
             <div className="px-7">
-                <Separator />
+                <Separator className="bg-neutral-700"/>
             </div>
             <CardContent className="p-7">
                 <Form {...form}>
@@ -71,6 +70,7 @@ export const EditTaskForm = ({ onCancel, projectOptions, memberOptions, initialV
                                             <Input
                                                 {...field}
                                                 placeholder="Enter task name"
+                                                className="border-neutral-700"
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -99,9 +99,10 @@ export const EditTaskForm = ({ onCancel, projectOptions, memberOptions, initialV
                                         <Select
                                             defaultValue={field.value}
                                             onValueChange={field.onChange}
+                                            
                                         >
                                             <FormControl>
-                                                <SelectTrigger>
+                                                <SelectTrigger className="border-neutral-700">
                                                     <SelectValue placeholder="Select assignee" />
                                                 </SelectTrigger>
 
@@ -135,7 +136,7 @@ export const EditTaskForm = ({ onCancel, projectOptions, memberOptions, initialV
                                             onValueChange={field.onChange}
                                         >
                                             <FormControl>
-                                                <SelectTrigger>
+                                                <SelectTrigger className="border-neutral-700">
                                                     <SelectValue placeholder="Select status" />
                                                 </SelectTrigger>
 
@@ -173,7 +174,7 @@ export const EditTaskForm = ({ onCancel, projectOptions, memberOptions, initialV
                                             onValueChange={field.onChange}
                                         >
                                             <FormControl>
-                                                <SelectTrigger>
+                                                <SelectTrigger className="border-neutral-700">
                                                     <SelectValue placeholder="Select project" />
                                                 </SelectTrigger>
 
@@ -199,7 +200,7 @@ export const EditTaskForm = ({ onCancel, projectOptions, memberOptions, initialV
                             />
                         </div>
                         <div  className="py-7">
-                            <Separator />
+                            <Separator className="bg-neutral-700"/>
                         </div>
                         <div className="flex items-center justify-between">
                             <Button
@@ -216,6 +217,7 @@ export const EditTaskForm = ({ onCancel, projectOptions, memberOptions, initialV
                                 type="submit"
                                 size="lg"
                                 disabled={isPending}
+                                className="border-none"
                             >
                                 Save Changes
                             </Button>

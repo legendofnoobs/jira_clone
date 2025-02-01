@@ -63,14 +63,14 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
     }
 
     return (
-        <Card className="w-full h-full border-none shadow-none">
+        <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
             <CardHeader className="flex p-7">
                 <CardTitle className="text-xl font-bold">
                     create new workspace
                 </CardTitle>
             </CardHeader>
             <div className="px-7">
-                <Separator />
+                <Separator className="bg-neutral-700"/>
             </div>
             <CardContent className="p-7">
                 <Form {...form}>
@@ -83,7 +83,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                                             Workspace name
                                         </FormLabel>
                                         <FormControl>
-                                            <Input {...field} type="text" placeholder="Enter workspace name" />
+                                            <Input {...field} type="text" placeholder="Enter workspace name" className="border-neutral-700"/>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -127,7 +127,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                                                     type="button"
                                                     size="xs"
                                                     variant="destructive"
-                                                    className="w-fit mt-2"
+                                                    className="w-fit mt-2 border-none"
                                                     disabled={isPending}
                                                     onClick={() => {
                                                         field.onChange(null);
@@ -143,7 +143,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                                                     type="button"
                                                     size="xs"
                                                     variant={`teritary`}
-                                                    className="w-fit mt-2"
+                                                    className="w-fit mt-2 border-none"
                                                     disabled={isPending}
                                                     onClick={() => {
                                                         inputRef.current?.click();
@@ -160,7 +160,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                             </FormField>
                         </div>
                         <div className="py-7">
-                            <Separator />
+                            <Separator className="bg-neutral-700"/>
                         </div>
                         <div className="flex items-center justify-between">
                             <Button
@@ -169,10 +169,10 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                                 variant={`secondary`}
                                 onClick={onCancel}
                                 disabled={isPending}
-                                className={cn(!onCancel && "invisible")}>
+                                className={cn(!onCancel && "invisible border-none")}>
                                 Cancel
                             </Button>
-                            <Button type="submit" size={`lg`} disabled={isPending}>
+                            <Button type="submit" className="border-none" size={`lg`} disabled={isPending}>
                                 Create Workspace
                             </Button>
                         </div>

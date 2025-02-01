@@ -102,7 +102,7 @@ function EditProjectForm({
     return (
         <div className="flex flex-col gap-y-4">
             <DeleteDialog />
-            <Card className="w-full h-full border-none shadow-none">
+            <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
                 <CardHeader className="flex flex-row items-center justify-between gap-x-4 p-7 space-y-0">
                     <CardTitle className="text-xl font-bold">
                         {initialValues.name}
@@ -121,7 +121,7 @@ function EditProjectForm({
                     </Button>
                 </CardHeader>
                 <div className="px-7">
-                    <Separator className="h-[1px] border-[1px solid #E5E5E5]" />
+                    <Separator className="h-[1px] border-[1px solid #E5E5E5] bg-neutral-700" />
                 </div>
                 <CardContent className="p-7">
                     <Form {...form}>
@@ -140,6 +140,7 @@ function EditProjectForm({
                                                     <Input
                                                         placeholder="Project placeholder"
                                                         {...field}
+                                                        className="border-neutral-700"
                                                     />
                                                 </FormControl>
                                                 <FormMessage />
@@ -196,7 +197,7 @@ function EditProjectForm({
                                                         type="button"
                                                         size="xs"
                                                         variant="destructive"
-                                                        className="w-fit mt-2"
+                                                        className="w-fit mt-2 border-none"
                                                         disabled={
                                                             isPending
                                                         }
@@ -214,7 +215,7 @@ function EditProjectForm({
                                                         type="button"
                                                         size="xs"
                                                         variant="teritary"
-                                                        className="w-fit mt-2"
+                                                        className="w-fit mt-2 border-none"
                                                         disabled={
                                                             isPending
                                                         }
@@ -231,7 +232,7 @@ function EditProjectForm({
                                 />
                             </div>
                             <div className="py-7">
-                                <Separator className="h-[1px] border-[1px solid #E5E5E5]" />
+                                <Separator className="h-[1px] border-[1px solid #E5E5E5] bg-neutral-700" />
                             </div>
                             <div className="flex items-center justify-between">
                                 <Button
@@ -253,6 +254,7 @@ function EditProjectForm({
                                     disabled={
                                         isPending
                                     }
+                                    className="border-none"
                                 >
                                     save changes
                                 </Button>
@@ -262,7 +264,7 @@ function EditProjectForm({
                 </CardContent>
             </Card>
 
-            <Card className="w-full h-full border-none shadow-none">
+            <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
                 <CardContent className="p-7">
                     <div className="flex flex-col">
                         <h3 className="font-bold">danger zone</h3>
@@ -270,7 +272,7 @@ function EditProjectForm({
                             deleting a Project is irreversible and will delete all associated data
                         </p>
                         <Button
-                            className="mt-6 w-fit ml-auto"
+                            className="mt-6 w-fit ml-auto border-none"
                             size={"sm"}
                             variant={"destructive"}
                             type="button"

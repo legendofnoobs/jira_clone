@@ -7,25 +7,23 @@ import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// import { useProjectId } from "@/features/workspaces/hooks/use-projectId";
 import { RiAddCircleFill } from "react-icons/ri";
 
 function Projects() {
     const { open } = useCreateProjectModal();
     const pathName = usePathname();
     const workspaceId = useWorkspaceId();
-    // const projectId = null
     const { data } = useGetProjects({ workspaceId });
 
     return (
         <div className="flex flex-col gap-y-2">
             <div className="flex items-center justify-between">
-                <p className="text-xs font-bold uppercase text-neutral-500 ">
+                <p className="text-xs font-bold uppercase text-white">
                     projects
                 </p>
                 <RiAddCircleFill
                     onClick={open}
-                    className="size-5 text-neutral-500 cursor-pointer hover:opacity-75 transition"
+                    className="size-5 text-white cursor-pointer hover:opacity-75 transition"
                 />
             </div>
             {data?.documents.map((project) => {
@@ -39,9 +37,9 @@ function Projects() {
                     >
                         <div
                             className={cn(
-                                "flex items-center gap-2.5 p-2.5 rounded-md hover:opacity-75 transition cursor-pointer text-neutral-500",
+                                "flex items-center gap-2.5 p-2.5 rounded-md hover:opacity-75 transition cursor-pointer text-white",
                                 isActive
-                                    ? "bg-white shadow-sm hover:opacity-100 text-primary"
+                                    ? "bg-neutral-900 shadow-sm hover:opacity-100 text-primary"
                                     : ""
                             )}
                         >

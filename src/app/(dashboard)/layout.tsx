@@ -16,7 +16,7 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-black text-white">
             <CreateWorkspaceModal />
             <CreateProjectModal />
             <CreateTaskModal/>
@@ -28,7 +28,7 @@ export default async function DashboardLayout({
                 <div className="lg:pl-[264px] w-full">
                     <div className="mx-auto max-w-screen-2xl h-full">
                         <Navbar />
-                        <main className="h-full py-8 px-6 flex flex-col">
+                        <main className="h-full py-8 px-6 flex flex-col bg-black">
                             {children}
                         </main>
                     </div>

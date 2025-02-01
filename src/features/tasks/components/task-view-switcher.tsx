@@ -82,7 +82,7 @@ export const TaskViewSwitcher = ({
         <Tabs
             defaultValue={view}
             onValueChange={setView}
-            className="flex-1 w-full border rounded-lg"
+            className="flex-1 w-full border-neutral-700 border rounded-lg"
         >
             <div className="h-full flex flex-col overflow-auto p-4">
                 <div className="flex flex-col gap-y-2 lg:flex-row justify-between items-center">
@@ -108,18 +108,18 @@ export const TaskViewSwitcher = ({
                     </TabsList>
                     <Button
                         size="sm"
-                        className="w-full lg:w-auto"
+                        className="w-full lg:w-auto border-none"
                         onClick={open}
                     >
-                        <PlusIcon className="size-4 mr-2" />
+                        <PlusIcon className="size-4 mr-2 text-white" />
                         New
                     </Button>
                 </div>
-                <Separator className="my-4" />
+                <Separator className="my-4 bg-neutral-500" />
                 <DataFilters
                     hideProjectFilter={hideProjectFilter}
                 />
-                <Separator className="my-4" />
+                <Separator className="my-4 bg-neutral-500" />
                 {isLoadingTasks ? (
                     <div className="w-full border rounded-lg h-[200px] flex flex-col items-center justify-center">
                         <Loader className="size-5 animate-spin text-muted-foreground" />

@@ -56,7 +56,7 @@ function MembersList() {
     };
 
     return (
-        <Card className="w-full h-full border-none shadow-none">
+        <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
             <DeleteDialog />
             <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-y-0">
                 <Button asChild variant={"secondary"} size={"sm"}>
@@ -68,7 +68,7 @@ function MembersList() {
                 <CardTitle className="text-xl font-bold">Members List</CardTitle>
             </CardHeader>
             <div className="px-7">
-                <Separator />
+                <Separator className="bg-neutral-700"/>
             </div>
             <CardContent className="p-7">
                 {data?.documents.map((member, index) => (
@@ -89,8 +89,7 @@ function MembersList() {
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button
-                                        className="ml-auto"
-                                        variant={"secondary"}
+                                        className="ml-auto border-none"
                                         size={"icon"}
                                     >
                                         <MoreVerticalIcon className="size-4 text-muted-foreground" />
@@ -126,7 +125,7 @@ function MembersList() {
                             </DropdownMenu>
                         </div>
                         {index < (data?.documents?.length || 0) - 1 ? (
-                            <Separator className="my-2.5 bg-neutral-200" />
+                            <Separator className="my-2.5 bg-neutral-700" />
                         ) : null}
                     </Fragment>
                 ))}

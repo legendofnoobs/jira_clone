@@ -13,11 +13,11 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
 
     const pathname = usePathname();
     return (
-        <main className='bg-neutral-100 min-h-screen'>
+        <main className='bg-black min-h-screen'>
             <div className='mx-auto max-w-screen-2xl p-4'>
                 <nav className='flex justify-between items-center'>
                     <Image src={`/logo.svg`} alt='logo' width={100} height={56} />
-                    <Button asChild variant={`secondary`}>
+                    <Button asChild className='border-none'>
                         <Link href={pathname === "/sign-in"? "/sign-up": "/sign-in"}>
                             {pathname === "/sign-in" ? "Sign up" : "Login"}
                         </Link>

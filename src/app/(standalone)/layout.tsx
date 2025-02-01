@@ -9,7 +9,7 @@ interface StandaloneLayoutProps {
 
 function StandaloneLayout({ children }: StandaloneLayoutProps) {
     return (
-        <main className="min-h-screen bg-neutral-100">
+        <main className="min-h-screen bg-black">
             <div className="mx-auto max-w-screen-xl p-4">
                 <nav className="flex justify-between items-center h-[73px]">
                     <Link href="/">

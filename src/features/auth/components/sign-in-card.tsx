@@ -33,12 +33,12 @@ const SignInCard = () => {
     }
 
     return (
-        <Card className='w-full h-full md:w-[487px] border-none shadow-none'>
+        <Card className='w-full h-full md:w-[487px] border-none shadow-none bg-neutral-900 text-white'>
             <CardHeader className='flex justify-center items-center text-center p-7'>
                 <CardTitle className='text-2xl'>Welcome Back!</CardTitle>
             </CardHeader>
             <div className='px-7'>
-                <Separator />
+                <Separator className='bg-neutral-700'/>
             </div>
             <CardContent className='p-7'>
                 <Form {...form}>
@@ -50,6 +50,7 @@ const SignInCard = () => {
                                         {...field}
                                         type='email'
                                         placeholder='Enter email address'
+                                        className='border-neutral-700'
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -62,13 +63,14 @@ const SignInCard = () => {
                                         {...field}
                                         type='password'
                                         placeholder='Enter Password'
+                                        className='border-neutral-700'
                                     />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )} />
 
-                        <Button className='w-full' disabled={isPending} size={`lg`}>
+                        <Button className='w-full border-none' disabled={isPending} size={`lg`}>
                             Login
                         </Button>
                     </form>

@@ -129,7 +129,7 @@ function EditWorkSpaceForm({
         <div className="flex flex-col gap-y-4">
             <DeleteDialog />
             <ResetDialog />
-            <Card className="w-full h-full border-none shadow-none">
+            <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
                 <CardHeader className="flex flex-row items-center justify-between gap-x-4 p-7 space-y-0">
                     <CardTitle className="text-xl font-bold">
                         {initialValues.name}
@@ -148,7 +148,7 @@ function EditWorkSpaceForm({
                     </Button>
                 </CardHeader>
                 <div className="px-7">
-                    <Separator className="h-[1px] border-[1px solid #E5E5E5]" />
+                    <Separator className="h-[1px] border-[1px solid #E5E5E5] bg-neutral-500" />
                 </div>
                 <CardContent className="p-7">
                     <Form {...form}>
@@ -167,6 +167,7 @@ function EditWorkSpaceForm({
                                                     <Input
                                                         placeholder="workspace placeholder"
                                                         {...field}
+                                                        className="border-neutral-500"
                                                     />
                                                 </FormControl>
                                                 <FormMessage />
@@ -223,7 +224,7 @@ function EditWorkSpaceForm({
                                                         type="button"
                                                         size="xs"
                                                         variant="destructive"
-                                                        className="w-fit mt-2"
+                                                        className="w-fit mt-2 border-none"
                                                         disabled={
                                                             isPending
                                                         }
@@ -241,7 +242,7 @@ function EditWorkSpaceForm({
                                                         type="button"
                                                         size="xs"
                                                         variant="teritary"
-                                                        className="w-fit mt-2"
+                                                        className="w-fit mt-2 border-none"
                                                         disabled={
                                                             isPending
                                                         }
@@ -258,7 +259,7 @@ function EditWorkSpaceForm({
                                 />
                             </div>
                             <div className="py-7">
-                                <Separator className="h-[1px] border-[1px solid #E5E5E5]" />
+                                <Separator className="h-[1px] border-[1px solid #E5E5E5] bg-neutral-500" />
                             </div>
                             <div className="flex items-center justify-between">
                                 <Button
@@ -276,7 +277,7 @@ function EditWorkSpaceForm({
                                 <Button
                                     type="submit"
                                     size="lg"
-                                    variant="primary"
+                                    className="border-none"
                                     disabled={
                                         isPending
                                     }
@@ -289,7 +290,7 @@ function EditWorkSpaceForm({
                 </CardContent>
             </Card>
 
-            <Card className="w-full h-full border-none shadow-none">
+            <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
                 <CardContent className="p-7">
                     <div className="flex flex-col">
                         <h3 className="font-bold">invite members</h3>
@@ -303,15 +304,14 @@ function EditWorkSpaceForm({
                                 />
                                 <Button
                                     onClick={handleCopyInviteLink}
-                                    variant={"secondary"}
-                                    className="size-12"
+                                    className="size-12 border-none"
                                 >
                                     <CopyIcon className="size-5" />
                                 </Button>
                             </div>
                         </div>
                         <Button
-                            className="mt-6 w-fit ml-auto"
+                            className="mt-6 w-fit ml-auto border-none"
                             size={"sm"}
                             variant={"destructive"}
                             type="button"
@@ -326,7 +326,7 @@ function EditWorkSpaceForm({
                 </CardContent>
             </Card>
 
-            <Card className="w-full h-full border-none shadow-none">
+            <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
                 <CardContent className="p-7">
                     <div className="flex flex-col">
                         <h3 className="font-bold">danger zone</h3>
@@ -334,7 +334,7 @@ function EditWorkSpaceForm({
                             deleting a workspace is irreversible and will delete all associated data
                         </p>
                         <Button
-                            className="mt-6 w-fit ml-auto"
+                            className="mt-6 w-fit ml-auto border-none"
                             size={"sm"}
                             variant={"destructive"}
                             type="button"

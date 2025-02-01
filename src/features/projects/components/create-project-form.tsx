@@ -79,14 +79,14 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
     }
 
     return (
-        <Card className="w-full h-full border-none shadow-none">
+        <Card className="w-full h-full border-none shadow-none bg-neutral-900 text-white">
             <CardHeader className="flex p-7">
                 <CardTitle className="text-xl font-bold">
                     create new project
                 </CardTitle>
             </CardHeader>
             <div className="px-7">
-                <Separator />
+                <Separator className="bg-neutral-700"/>
             </div>
             <CardContent className="p-7">
                 <Form {...form}>
@@ -102,7 +102,7 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
                                             <FormControl>
                                                 <Input
                                                     placeholder="project placeholder"
-                                                    {...field}
+                                                    {...field} className="border-neutral-700"
                                                 />
                                             </FormControl>
                                             <FormMessage />
@@ -155,7 +155,7 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
                                                     type="button"
                                                     size="xs"
                                                     variant="destructive"
-                                                    className="w-fit mt-2"
+                                                    className="w-fit mt-2 border-none"
                                                     disabled={isPending}
                                                     onClick={() => {
                                                         field.onChange(null);
@@ -171,7 +171,7 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
                                                     type="button"
                                                     size="xs"
                                                     variant="teritary"
-                                                    className="w-fit mt-2"
+                                                    className="w-fit mt-2 border-none"
                                                     disabled={isPending}
                                                     onClick={() => {
                                                         inputRef.current?.click();
@@ -186,7 +186,7 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
                             />
                         </div>
                         <div className="py-7">
-                            <Separator />
+                            <Separator className="bg-neutral-700"/>
                         </div>
                         <div className="flex items-center justify-between">
                             <Button
@@ -195,13 +195,14 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
                                 variant="secondary"
                                 disabled={isPending}
                                 onClick={onCancel}
-                                className={cn(!!onCancel ? "" : "invisible")}
+                                className={cn(!!onCancel ? "" : "invisible border-none")}
                             >
                                 cancel
                             </Button>
                             <Button
                                 type="submit"
                                 size="lg"
+                                className="border-none"
                                 variant="primary"
                                 disabled={isPending}
                             >

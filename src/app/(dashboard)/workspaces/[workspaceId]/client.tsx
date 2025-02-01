@@ -43,14 +43,16 @@ export const WorkspaceIdClient = () => {
                     data={tasks.documents}
                     total={tasks.total}
                 />
-                <ProjectList
-                    data={projects.documents}
-                    total={projects.total}
-                />
-                <MemberList
-                    data={members.documents}
-                    total={members.total}
-                />
+                <div className="flex flex-col gap-4"> {/* New container for ProjectList and MemberList */}
+                    <ProjectList
+                        data={projects.documents}
+                        total={projects.total}
+                    />
+                    <MemberList
+                        data={members.documents}
+                        total={members.total}
+                    />
+                </div>
             </div>
         </div>
     )
