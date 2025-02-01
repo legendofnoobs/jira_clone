@@ -6,7 +6,6 @@ import {
     Client, 
     Databases, 
     Account, 
-    // Storage, 
     Users 
 } from "node-appwrite";
 

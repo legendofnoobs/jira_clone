@@ -11,8 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
-import { FaGithub } from "react-icons/fa"
-import { FcGoogle } from "react-icons/fc"
+// import { FaGithub } from "react-icons/fa"
+// import { FcGoogle } from "react-icons/fc"
 
 import { loginSchema } from "../schemas"
 import { useLogin } from '../api/use-login'
@@ -74,10 +74,10 @@ const SignInCard = () => {
                     </form>
                 </Form>
             </CardContent>
-            <div className='px-7'>
+            {/* <div className='px-7'>
                 <Separator />
-            </div>
-            <CardContent className='p-7 flex flex-col gap-y-4'>
+            </div> */}
+            {/* <CardContent className='p-7 flex flex-col gap-y-4'>
                 <Button className='w-full' variant={`secondary`} size={`lg`} disabled={isPending}>
                     <FcGoogle className="mr-2 size-5" />
                     Login with Google
@@ -86,7 +86,7 @@ const SignInCard = () => {
                     <FaGithub className="mr-2 size-5" />
                     Login with Github
                 </Button>
-            </CardContent>
+            </CardContent> */}
         </Card>
     )
 }

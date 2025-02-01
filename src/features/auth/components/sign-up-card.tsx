@@ -1,6 +1,6 @@
 "use client";
-import { FcGoogle } from "react-icons/fc"
-import { FaGithub } from "react-icons/fa"
+// import { FcGoogle } from "react-icons/fc"
+// import { FaGithub } from "react-icons/fa"
 
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -95,7 +95,7 @@ const SignUpCard = () => {
                     </form>
                 </Form>
             </CardContent>
-            <div className='px-7'>
+            {/* <div className='px-7'>
                 <Separator />
             </div>
             <CardContent className='p-7 flex flex-col gap-y-4'>
@@ -107,7 +107,7 @@ const SignUpCard = () => {
                     <FaGithub className="mr-2 size-5" />
                     Login with Github
                 </Button>
-            </CardContent>
+            </CardContent> */}
         </Card>
     )
 }

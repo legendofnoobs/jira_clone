@@ -8,9 +8,6 @@ import { useRouter } from "next/navigation"
 import React from "react"
 import { Member } from "@/features/members/types" 
 
-
-
-
 interface EventCardProps {
     id: string
     title: string

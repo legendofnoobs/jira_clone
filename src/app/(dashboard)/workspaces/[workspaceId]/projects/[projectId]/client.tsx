@@ -11,7 +11,6 @@ import { PageError } from '@/components/page-error';
 import { useGetProject } from '@/features/projects/api/use-get-project';
 import { useGetProjectAnalytics } from '@/features/projects/api/use-get-project-analytics';
 import { Analytics } from '@/components/analytics';
-// import { Analytics } from '@/components/analytics';
 
 export const ProjectIdClient = () => {
 
