@@ -247,6 +247,23 @@ const app = new Hono()
             }
 
             // TODO: Delete tasks
+            // Fetch tasks associated with the project
+            const tasks = await databases.listDocuments(
+                DATABASE_ID,
+                TASKS_ID,
+                [
+                    Query.equal("projectId", projectId) // Filter tasks by projectId
+                ]
+            );
+
+            // Delete each associated task
+            for (const task of tasks.documents) {
+                await databases.deleteDocument(
+                    DATABASE_ID,
+                    TASKS_ID,
+                    task.$id
+                );
+            }
 
             await databases.deleteDocument(
                 DATABASE_ID,

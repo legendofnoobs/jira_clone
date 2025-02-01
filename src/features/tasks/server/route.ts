@@ -202,7 +202,7 @@ const app = new Hono()
         async (c) => {
             const user = c.get("user");
             const databases = c.get("databases");
-            const { taskId } = c.req.param(); 
+            const { taskId } = c.req.param();
 
             const task = await databases.getDocument<Task>(
                 DATABASE_ID,
@@ -326,7 +326,7 @@ const app = new Hono()
         }
     )
     .post(
-        "/bulk-update", 
+        "/bulk-update",
         sessionMiddleware,
         zValidator(
             "json",
@@ -352,7 +352,7 @@ const app = new Hono()
             );
 
             const workspaceIds = new Set(taskToUpdate.documents.map((task) => task.workspaceId));
-            if (workspaceIds.size !== 1) { 
+            if (workspaceIds.size !== 1) {
                 return c.json({ error: "All tasks must belong to the same workspace" }, 400);
             }
 
