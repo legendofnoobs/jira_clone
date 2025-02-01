@@ -26,6 +26,7 @@ import { ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { toast } from "sonner";
 
 interface ICreateProjectFormProps {
     onCancel?: () => void;
@@ -38,7 +39,7 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
     const { mutate, isPending } = useCreateProject();
 
     const form = useForm<z.infer<typeof createProjectSchema>>({
-        resolver: zodResolver(createProjectSchema.omit({workspaceId: true})),
+        resolver: zodResolver(createProjectSchema.omit({ workspaceId: true })),
         defaultValues: createProjectFormDefaultValues,
     });
 
@@ -64,7 +65,15 @@ function CreateProjectForm({ onCancel }: ICreateProjectFormProps) {
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
 
+        const checkSize = (file: File) => {
+            if (file.size > 1048576) {
+                toast.error("Image size should be less than 1mb");
+                return
+            }
+        }
+
         if (file) {
+            checkSize(file)
             form.setValue("image", file)
         }
     }

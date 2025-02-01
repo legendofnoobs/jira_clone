@@ -26,6 +26,7 @@ import useConfirm from "@/hooks/use-confirm";
 import { useDeleteProject } from "../api/use-delete-project";
 import { updateProjectSchema } from "../schemas";
 import { useUpdateProject } from "../api/use-update-project";
+import { toast } from "sonner";
 
 interface EditProjectFormProps {
     onCancel?: () => void;
@@ -84,8 +85,16 @@ function EditProjectForm({
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
 
+        const checkSize = (file: File) => {
+            if (file.size > 1048576) {
+                toast.error("Image size should be less than 1mb");
+                return
+            }
+        }
+
         if (file) {
-            form.setValue("image", file);
+            checkSize(file)
+            form.setValue("image", file)
         }
     };
 

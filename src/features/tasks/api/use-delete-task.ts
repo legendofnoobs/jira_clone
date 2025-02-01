@@ -28,6 +28,7 @@ export const useDeleteTask = () => {
             queryClient.invalidateQueries({ queryKey: ["workspace-analytics"] });
             queryClient.invalidateQueries({ queryKey: ["tasks"] });
             queryClient.invalidateQueries({ queryKey: ["tasks", data.$id] });
+            queryClient.removeQueries({ queryKey: ["tasks", data.$id] });
         },
         onError: (error) => {
             console.log({ error });

@@ -3,7 +3,8 @@
 import {
     ColumnDef,
 } from "@tanstack/react-table"
-import { ArrowUpDown, MoreVertical, 
+import {
+    ArrowUpDown, MoreVertical,
     // MoreVertical 
 } from "lucide-react"
 import { Task } from "../types";
@@ -51,22 +52,28 @@ export const columns: ColumnDef<Task>[] = [
                     Project
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
-            )
+            );
         },
         cell: ({ row }) => {
-            const project = row.original.project
+            const project = row.original.project;
             return (
                 <div className="flex items-center gap-x-2 text-sm font-medium">
-                    <ProjectAvatar
-                        className="size-6"
-                        name={project.name}
-                        image={project.imageUrl}
-                    />
-                    <p className="line-clamp-1">{project.name}</p>
+                    {project && (
+                        <>
+                            <ProjectAvatar
+                                className="size-6"
+                                name={project.name}
+                                image={project.imageUrl}
+                            />
+                            <p className="line-clamp-1">{project.name}</p>
+                        </>
+                    )}
+                    {!project && <p className="text-gray-400">Deleted Project</p>}
                 </div>
-            )
-        }
-    },
+            );
+        },
+    }
+    ,
     {
         accessorKey: "assignee",
         header: ({ column }) => {
@@ -78,21 +85,27 @@ export const columns: ColumnDef<Task>[] = [
                     Assignee
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
-            )
+            );
         },
         cell: ({ row }) => {
-            const assignee = row.original.assignee
+            const assignee = row.original.assignee;
             return (
                 <div className="flex items-center gap-x-2 text-sm font-medium">
-                    <MemberAvatar
-                        fallbackClassName="text-xs"
-                        className="size-6"
-                        name={assignee.name}
-                    />
-                    <p className="line-clamp-1">{assignee.name}</p>
+                    {assignee ? (
+                        <>
+                            <MemberAvatar
+                                fallbackClassName="text-xs"
+                                className="size-6"
+                                name={assignee.name}
+                            />
+                            <p className="line-clamp-1">{assignee.name}</p>
+                        </>
+                    ) : (
+                        <p className="text-gray-400">Unassigned</p>
+                    )}
                 </div>
-            )
-        }
+            );
+        },
     },
     {
         accessorKey: "dueDate",
@@ -142,7 +155,7 @@ export const columns: ColumnDef<Task>[] = [
         id: "actions",
         cell: ({ row }) => {
             const id = row.original.$id;
-            const projectId = row.original.project.$id;
+            const projectId = row.original.project?.$id;
             return (
                 <TaskActions id={id} projectId={projectId}>
                     <Button variant="ghost" className="size-8 p-0">
