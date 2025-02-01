@@ -3,7 +3,7 @@
 import { PageError } from "@/components/page-error";
 import { PageLoader } from "@/components/page-loader";
 import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
-import JoinWorkspaceForm from "@/features/workspaces/components/join-workspace-form"; 
+import JoinWorkspaceForm from "@/features/workspaces/components/join-workspace-form";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 export const WorkspaceIdJoinClient = () => {
@@ -18,9 +18,11 @@ export const WorkspaceIdJoinClient = () => {
         return <PageError message='Project not found' />
     }
 
-    <div className="w-full lg:max-w-xl">
-        <JoinWorkspaceForm
-            initialValues={initialValues}
-        />
-    </div>
+    return (
+        <div className="w-full lg:max-w-xl">
+            <JoinWorkspaceForm
+                initialValues={initialValues}
+            />
+        </div>
+    )
 }
