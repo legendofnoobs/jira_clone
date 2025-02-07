@@ -19,7 +19,7 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
     const { open } = useEditTaskModal();
 
     return (
-        <div className="flex flex-col gap-y-4 col-span-1">
+        <div className="flex flex-col gap-y-4 col-span-1 bg-neutral-900 rounded-lg">
             <div className="bg-muted rounded-lg p-4">
                 <div className="flex items-center justify-between">
                     <p className="text-lg font-semibold">
@@ -35,7 +35,7 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
                     </Button>
                 </div>
 
-                <Separator className="my-4" />
+                <Separator className="my-4 bg-neutral-700" />
 
                 <div className="flex flex-col gap-y-4">
                     <OverviewProperty label="Assignee">

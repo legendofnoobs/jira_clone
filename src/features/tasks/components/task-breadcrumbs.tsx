@@ -56,7 +56,7 @@ export const TaskBreadcrumbs = ({ project, task }: TaskBreadcrumbsProps) => {
                 {task.name}
             </p>
             <Button
-                className="ml-auto"
+                className="ml-auto border-none"
                 variant="destructive"
                 size="sm"
                 onClick={handleDeleteTask}

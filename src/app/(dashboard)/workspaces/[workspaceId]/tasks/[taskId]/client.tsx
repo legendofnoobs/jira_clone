@@ -28,7 +28,7 @@ export const TaskIdClient = () => {
                 project={data.project}
                 task={data}
             />
-            <Separator className="my-6" />
+            <Separator className="my-6 bg-neutral-700" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <TaskOverview task={data} />
                 <TaskDescription task={data} />
