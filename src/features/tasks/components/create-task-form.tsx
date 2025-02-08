@@ -88,10 +88,10 @@ export const CreateTaskForm = ({ onCancel, projectOptions, memberOptions }: Crea
                                 render={({
                                     field 
                                 }) => (
-                                    <FormItem>
+                                    <FormItem className="z-50">
                                         <FormLabel>Due Date</FormLabel>
-                                        <FormControl>
-                                            <DatePicker {...field} />
+                                        <FormControl className="z-50">
+                                            <DatePicker {...field} className="z-50"/>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -215,7 +215,7 @@ export const CreateTaskForm = ({ onCancel, projectOptions, memberOptions }: Crea
                                 variant="secondary"
                                 onClick={onCancel}
                                 disabled={isPending}
-                                className={cn(!onCancel && "invisible")} // Si no se pasa el onCancel, se oculta el boton
+                                className={cn(!onCancel && "invisible")}
                             >
                                 Cancel
                             </Button>
