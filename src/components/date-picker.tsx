@@ -23,7 +23,7 @@ export const DatePicker = ({
     placeHolder = "Select date"
 }: DatePickerProps) => {
     return (
-        <Popover>
+        <Popover modal={true}>
             <PopoverTrigger asChild className="border-neutral-700">
                 <Button
                     variant="outline"
