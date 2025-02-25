@@ -46,10 +46,10 @@ export const WorkspaceSwitcher = () => {
                 <SelectTrigger className="w-full bg-neutral-900 border-none font-medium px-2 py-7">
                     <SelectValue placeholder="no workspace selected" />
                 </SelectTrigger>
-                <SelectContent className="bg-neutral-900 border-none text-white group hover:bg-neutral-800">
+                <SelectContent className="bg-neutral-900 border-none text-white">
                     {documents.map((workspace) => (
                         <SelectItem key={workspace.$id} value={workspace.$id} >
-                            <div className="flex justify-center  group-hover:bg-neutral-700 bg-neutral-900 items-center gap-2 font-medium">
+                            <div className="flex justify-center group-hover:bg-neutral-700 bg-neutral-900 items-center gap-2 font-medium">
                                 <WorkspaceAvatar
                                     name={workspace.name}
                                     image={workspace.imageUrl}
