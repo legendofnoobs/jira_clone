@@ -14,6 +14,7 @@ import { Analytics } from '@/components/analytics';
 
 import { useUploadFile } from "@/hooks/useUploadFile";
 import { useFetchFiles } from "@/hooks/useFetchFiles";
+import { FILES_BUCKET_ID } from '@/config';
 
 export const ProjectIdClient = () => {
 
@@ -21,7 +22,7 @@ export const ProjectIdClient = () => {
     const { data: project, isLoading: isLoadingProject } = useGetProject({ projectId });
     const { data: analytics, isLoading: isLoadingAnalytics } = useGetProjectAnalytics({ projectId });
 
-    const bucketId = process.env.NEXT_PUBLIC_APPWRITE_FILES_BUCKET_ID;
+    const bucketId = FILES_BUCKET_ID
     if (!bucketId) {
         throw new Error("NEXT_PUBLIC_APPWRITE_FILES_BUCKET_ID is not defined");
     }
