@@ -49,6 +49,7 @@ const SignInCard = () => {
                                     <Input
                                         {...field}
                                         type='email'
+                                        id="emailInput"
                                         placeholder='Enter email address'
                                         className='border-neutral-700'
                                     />
@@ -62,6 +63,7 @@ const SignInCard = () => {
                                     <Input
                                         {...field}
                                         type='password'
+                                        id="passwordInput"
                                         placeholder='Enter Password'
                                         className='border-neutral-700'
                                     />
