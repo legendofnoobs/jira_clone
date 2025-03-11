@@ -72,7 +72,7 @@ const SignInCard = () => {
                             </FormItem>
                         )} />
 
-                        <Button className='w-full border-none' disabled={isPending} size={`lg`}>
+                        <Button className='w-full border-none' disabled={isPending} id='signinButton' size={`lg`}>
                             Login
                         </Button>
                     </form>
