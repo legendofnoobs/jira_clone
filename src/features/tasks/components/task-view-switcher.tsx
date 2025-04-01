@@ -22,16 +22,6 @@ import { useBulkUpdateTasks } from "../api/use-bulk-update-tasks"
 import { DataCalendar } from "./data-calendar"
 import { useProjectId } from "@/features/projects/hooks/use-project-id"
 
-// import { DataFilters } from "./data-filters"
-// import { useTaksFilters } from "../hooks/use-taks-filters"
-// import { DataTable } from "./data-table"
-// import { columns } from './columns';
-// import { DataKanban } from "./data-kanban"
-// import { TaskStatus } from '../types';
-// import { useCallback } from "react"
-// import { useBulkUpdateTasks } from "../api/use-bulk-update-tasks"
-// import { useProjectId } from "@/features/projects/hook/use-project-id"
-
 interface TasksViewSwitcherProps {
     hideProjectFilter?: boolean;
 }
