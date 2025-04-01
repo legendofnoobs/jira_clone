@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import ProjectAvatar from '@/features/projects/components/ProjectAvatar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -17,7 +18,7 @@ import { useFetchFiles } from "@/hooks/useFetchFiles";
 import { FILES_BUCKET_ID } from '@/config';
 import { toast } from 'sonner';
 import { storage } from '@/lib/appwriteClient';
-import useConfirm from "@/hooks/use-confirm"; // Import custom confirmation hook
+import useConfirm from "@/hooks/use-confirm"; 
 
 export const ProjectIdClient = () => {
     const projectId = useProjectId();
@@ -29,13 +30,18 @@ export const ProjectIdClient = () => {
 
     const [ConfirmDialog, confirmAction] = useConfirm("Delete File", "Are you sure you want to delete this file?", "destructive");
 
+    const fileInputRef = useRef<HTMLInputElement>(null); // Reference for file input
+
     if (isLoadingProject || isLoadingAnalytics) return <PageLoader />;
     if (!project || !analytics) return <PageError message="Project not found" />;
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.length && projectId) {
             await uploadFile(e.target.files[0], projectId);
-            refetch()
+            refetch();
+            if (fileInputRef.current) {
+                fileInputRef.current.value = ""; // Clear the input after upload
+            }
         }
     };
 
@@ -44,13 +50,13 @@ export const ProjectIdClient = () => {
         if (!confirmed) return;
 
         try {
-            const bucketId = process.env.NEXT_PUBLIC_APPWRITE_FILES_BUCKET_ID;
+            const bucketId = FILES_BUCKET_ID;
             if (!bucketId) {
-                throw new Error("NEXT_PUBLIC_APPWRITE_FILES_BUCKET_ID is not defined");
+                throw new Error("FILES_BUCKET_ID is not defined");
             }
             await storage.deleteFile(bucketId, fileId);
             toast.success("File deleted");
-            refetch()
+            refetch();
         } catch (error) {
             console.error("Delete failed", error);
             toast.error("Failed to delete file");
@@ -79,7 +85,12 @@ export const ProjectIdClient = () => {
             {/* File Upload & Display */}
             <div className="mt-6">
                 <h2 className="text-lg font-semibold mb-2">Upload Files for This Project</h2>
-                <input type="file" onChange={handleFileChange} disabled={uploading} />
+                <input 
+                    ref={fileInputRef} 
+                    type="file" 
+                    onChange={handleFileChange} 
+                    disabled={uploading} 
+                />
                 {uploading && <p>Uploading...</p>}
 
                 <h2 className="mt-4 text-lg font-semibold">Uploaded Files:</h2>
@@ -110,7 +121,7 @@ export const ProjectIdClient = () => {
                         ))}
                     </ul>
                 )}
-                {files.length === 0 && !fetching && <p>no files uploaded</p>}
+                {files.length === 0 && !fetching && <p>No files uploaded</p>}
             </div>
         </div>
     );
